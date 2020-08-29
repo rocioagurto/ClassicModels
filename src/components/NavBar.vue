@@ -10,9 +10,9 @@
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <b-nav-item href="#" to="/" class="mr-3" v-if="isLoggedIn">Home</b-nav-item>
-        <b-nav-item href="#" to="/admin" class="mr-3" v-if="isLoggedIn">Ordenes</b-nav-item>
+        <b-nav-item href="#" to="/ordenes" class="mr-3" v-if="isLoggedIn">Ordenes</b-nav-item>
         <b-nav-item href="#" to="/login" class="mr-3 mb-sm-3 mb-md-0" v-if="!isLoggedIn">Login</b-nav-item>
-        <b-nav-item href="#" class="mr-3 mb-sm-3 mb-md-0" v-if="isLoggedIn" @click="logout">Log Out</b-nav-item>
+        <b-nav-item href="#" class="mr-3 mb-sm-3 mb-md-0" v-if="isLoggedIn" @click="logout">Log out</b-nav-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -51,3 +51,7 @@ export default {
 
 }
 </script>
+
+<style>
+
+</style>
