@@ -33,3 +33,61 @@
     </b-container>
   </div>
 </template>
+
+<script>
+import Firebase from 'firebase'
+export default {
+  data() {
+    return {
+      credentials: {
+        email: '',
+        password: '',
+      },
+      formHasErrors: false,
+      show: true,
+    }
+   },
+  methods: {
+    //Boton reset
+    onReset(e) {
+      e.preventDefault()
+      //Restablece valores del formulario
+      this.credentials.email = ''
+      this.credentials.password = ''
+      this.show = false
+      this.$nextTick(() => {
+        this.show = true
+      })
+    },
+    //Boton iniciar sesion
+    login(e) {
+      e.preventDefault()
+      this.formHasErrors = this.credentials.email === '' || this.credentials.password === ''
+      if (!this.formHasErrors) {
+        Firebase.auth()
+        //Iniciar sesion con correo electronico y contraseña
+        .signInWithEmailAndPassword(
+          this.credentials.email,
+          this.credentials.password
+        )
+        .then(() => {
+          let user = this.credentials.email
+          this.$store.dispatch('updateUser', user)
+          alert(`Bienvenida, ${user}`) 
+          this.$router.push('/')
+        })
+        .catch(() => {
+          alert('Usuario no autenticado')
+        })
+      }
+    }
+  },
+}
+</script>
+
+<style lang="scss" scoped>
+
+.login{
+  height: 67vh;
+}
+</style>
